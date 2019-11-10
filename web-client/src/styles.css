@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+html,body{
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    
+}
+body {
+    /* background-color: #E9ECF1; */
+}

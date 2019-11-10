@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div>
+  <div class="form-group emailcontainer">
+    <label for="usr">Enter Your EmailId :</label>
+    <input type="text" class="form-control" id="usr" [(ngModel)]="email">
+    <br>
+    <button [disabled]="!email" type="button" class="btn okbtn" (click)="navigateToQuery()">OK</button>
+  </div>
+</div>

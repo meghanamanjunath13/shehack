@@ -1,0 +1,22 @@
+{
+  "name": "webhookwarmcall",
+  "version": "1.0.0",
+  "description": "Webhook for warmcall application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/maps": "^1.0.2",
+    "actions-on-google": "^2.4.1",
+    "dialogflow-fulfillment": "^0.6.1",
+    "express": "^4.16.3",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.12",
+    "request": "^2.88.0",
+    "sentiment": "^5.0.2",
+    "woocommerce-api": "^1.4.2"
+  }
+}

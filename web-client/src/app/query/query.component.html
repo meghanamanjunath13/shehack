@@ -1,0 +1,106 @@
+<!-- <div class="query-container" *ngIf = "showChat==true">
+  <div style="width: 100%;background-color:wheat;padding:0px;height:30px;position: absolute; top:0;left:0" (click)="toggleChat()">
+   <i style="float:right;    padding-right: 10px;  padding-top: 3px;" class="fa fa-window-minimize" aria-hidden="true"></i>
+
+  </div>
+  <div class="chat-window">
+    <div class="chat" *ngFor="let text of chat">
+      <div *ngIf="text.from == 'user'" style="display:flex;float:right">
+        <p style="float: right;line-height: 32px;padding-right:10px">{{text.text}}</p>
+       <img style="height:30px;width:30px"src="./assets/img/user.png"></div>
+     <div style="display:flex;float:left" *ngIf="text.from == 'bot'"> 
+       <img  style="height:30px;width:30px"src="./assets/img/bot.png">
+     <p style="float: left;line-height: 32px; padding-left: 10px;">{{text.text}}</p></div>
+     </div>
+   </div>
+  
+ <input style="width: 90%; float: left" (keypress)="identifyText($event.keyCode)" type="text" class="form-control" [(ngModel)]="query" placeholder="Type your query here..">
+ <!-- <button class="btn btn-primary send-btn" (click)="sendQuery()">Query</button> -->
+<!-- <div style="width:10%; float: right;display: flex; align-items: center; justify-content: center; height:30px"><i (click)="activateSpeechSearchMovie()" class="fa fa-volume-control-phone" aria-hidden="true"></i></div>
+
+</div>  -->
+
+<div class="chat-container">
+  <!-- <div class="chat-header">
+    <div>
+      <img src="./assets/img/gojeck.png" class="alisha-logo">
+    </div>
+    <div>
+      <div>GoJek</div>
+      <div>Chat Assistant</div>
+    </div>
+  </div> -->
+  <app-header></app-header>
+  <div #scrollMe class="all-chat-holder">
+    <div class="chat-window">
+      <div class="chat" *ngFor="let text of chat">
+        <div *ngIf="text.from == 'user'" style="float:left; display: flex;    max-width: 85%;">
+          <div class="image-holder">
+            <img style="height:30px;width:30px" src="/assets/img/user-logo.jpeg">
+          </div>
+          <div class="talk-bubble tri-right left-top">
+            <div class="talktext">
+              <p style="color: black">{{text.text}}</p>
+            </div>
+          </div>
+          <!-- <p  class="user-chat-bubble" style="float: right;line-height: 32px;padding-left:15px" class="tri-right left-top" >{{text.text}}</p> -->
+        </div>
+
+        <div style="float:right;display: flex;    max-width: 85%;" *ngIf="text.from == 'bot'">
+          <div class="talk-bubble-right tri-right right-top">
+            <div class="talktext">
+              <p style="color: white;">{{text.text}}</p>
+              <div *ngIf="text.elements">
+                <div *ngFor="let item of text.elements; let i = index" style="width: 100%; ">
+                  <div  *ngIf="text.selected ==  i" style="display: flex; align-items: center;justify-content: space-between">
+                    <div  *ngIf="item.imageUrl" [style.visibility]="text.selected==0 ? 'hidden' : 'visible'" (click)="prev(text)" class="icon-holder">
+                      <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </div>
+
+                    <div  *ngIf="item.imageUrl" class="content-container">
+                      <img  *ngIf="item.imageUrl" src="{{item.imageUrl}}" style="height: 100px; padding-bottom: 5px;    max-width:170px;">
+                      <p *ngIf="item.title" class="desc title">{{item.title}}</p>
+                      <!-- <p class="desc title">&#8377;{{item.price}}</p> -->
+                      <p  *ngIf="item.subtitle && getSubTitle('description', item.subtitle)" class="desc">{{ getSubTitle('description', item.subtitle) }}</p>
+                      <p  *ngIf="item.subtitle" class="desc" style="margin-top: 10px">
+                          <span style="font-size: 16px; color: black; font-weight: bold">&#8377;{{ getSubTitle('fsp', item.subtitle) }}</span> 
+                          <span *ngIf="getSubTitle('mrp', item.subtitle) > getSubTitle('fsp', item.subtitle)" style="text-decoration: line-through;">&#8377;{{ getSubTitle('mrp', item.subtitle) }} </span>
+                      
+                      </p>
+                      <a *ngIf="item.buttons" href="{{item.buttons[0].postback}}" target="_blank" class="buynow"><div>{{item.buttons[0].text}}</div></a>
+                    </div>
+                    <div  *ngIf="item.imageUrl" [style.visibility]="text.selected==text.elements.length-1 ? 'hidden' : 'visible'" (click)="next(text)" class="icon-holder">
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <p style="float: left;line-height: 32px; padding-right: 15px;text-align: right">{{text.text}}</p> -->
+          <div class="image-holder">
+            <img style="width:40px;" src="/assets/img/gojek2.jpg">
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="typing" id="wave" style="float: right">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-text">
+    <textarea row="2" class="form-control chat-text" (keypress)="identifyText($event.keyCode)" [(ngModel)]="query" placeholder="Ask Something..."></textarea>
+  </div>
+  <div *ngIf="query==''" class="microphone" (click)="activateSpeechSearchMovie()">
+    <i class="fa fa-microphone" aria-hidden="true"></i>
+  </div>
+  <div *ngIf="query!=''" class="microphone" (click)="sendQuery()">
+    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+  </div>
+
+</div>
